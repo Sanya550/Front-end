@@ -1,0 +1,29 @@
+
+.form-group {
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #000000;
+    border-radius: 3px;
+    margin-bottom: 10px; /* внешний отступ */
+}
+
+.login-container {
+    display: flex; /*превращает .login-container в гибкий контейнер */
+    flex-direction: column; /* указывает, что дочерние элементы должны быть расположены в столбец (по вертикали) */
+    justify-content: center; /* выравнивает дочерние элементы по вертикали по центру */
+    align-items: center;/* выравнивает их по горизонтали по центру */
+    height: 80vh; /* Установите высоту 100% видимой области, чтобы содержимое было вертикально по центру */
+    text-align: center; /* Выравнивание текста по центру */
+}
+
+button {
+    padding: 12px 23px;
+    font-size: 16px;
+    border-radius: 3px;
+}
+
+footer {
+    color: #000000;
+    text-align: center;
+    padding: 10px 0;
+}
