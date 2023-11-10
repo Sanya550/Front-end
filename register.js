@@ -4,7 +4,6 @@ const surnameInput = document.getElementById("surname")
 const nameInput = document.getElementById("name")
 const passwordInput = document.getElementById("password")
 const confirmInput = document.getElementById("confirm_password")
-const fs = require("fs")
 
 registerButton.onclick = function() {
     const userNameValue = userNameInput.value
@@ -54,16 +53,5 @@ function addNewUser(name, surname, username, password){
         name: name,
         surname: surname
     }
-    fetch("data.json")
-        .then(response => response.json())
-        .then(existingData => {
-            console.log(existingData)
-            existingData.users.push(newData);
-        
-            
-        })
-        .catch(error => {
-            console.error("Error fetching data on adding process: ", error);
-        });
 
 }
