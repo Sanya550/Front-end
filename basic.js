@@ -1,11 +1,8 @@
-// export function addNewUser(username, password, name, surname) {
-//     fetch('http://localhost:8080/users/addUser', {
+// export function updateCurrentUser(username) {
+//     fetch('http://localhost:8080/users/currentUser', {
 //         method: 'POST',
 //         body: JSON.stringify({
 //             username: username,
-//             password: password,
-//             name: name,
-//             surname: surname
 //           }),
 //         headers: {
 //             "Content-type": "application/json; charset=UTF-8"
@@ -15,6 +12,7 @@
 //         if (!response.ok) {
 //             throw new Error(`HTTP error! Status: ${response.status}`);
 //         }
+//         console.log("here")
 //         return response.json(); 
 //     })
 //     .then(data => {

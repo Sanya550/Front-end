@@ -1,4 +1,3 @@
-
 const loginElementButton = document.getElementById("login-btn")
 const userNameInput = document.getElementById("username")
 const passwordInput = document.getElementById("password")
@@ -8,9 +7,11 @@ loginElementButton.onclick = function() {
     const passwordValue = passwordInput.value
     isUserExist(userNameValue, passwordValue).then(userExists => {
         if(userExists){
+            // updateCurrentUser(userNameValue)
             const currentURL = window.location.href;
             const newUrl = currentURL.replace("login", "main");
             window.location.href = newUrl;
+            localStorage.setItem("currentUser", userNameValue)
         }else{
             alert("Username or password are wrong")
         }

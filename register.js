@@ -20,6 +20,7 @@ registerButton.onclick = function() {
         }else{
             if(passwordValue===confirmPasswordValue){
                 addNewUser(nameValue, surnameValue, userNameValue, passwordValue)
+                alert("Your user have been created")
             }else{
                 alert("Password and ConfirmPassword values must be the same")
             }
@@ -47,6 +48,9 @@ function isUserExistByUsername(username) {
 }
 
 function addNewUser(username, password, name, surname) {
+    const currentURL = window.location.href;
+    const newUrl = currentURL.replace("register", "login");
+    window.location.href = newUrl;
     fetch('http://localhost:8080/users/addUser', {
         method: 'POST',
         body: JSON.stringify({
@@ -63,7 +67,6 @@ function addNewUser(username, password, name, surname) {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        console.log("here")
         return response.json(); 
     })
     .then(data => {
