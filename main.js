@@ -1,3 +1,5 @@
+const logoutButton = document.getElementById("logout");
+const cabinetButton = document.getElementById("cabinet");
 window.addEventListener("click", function(event){
     
     if(event.target.classList.contains("items_control_plus")){
@@ -36,11 +38,23 @@ window.addEventListener("click", function(event){
 function addDataToLocalStorageForCurrentUsername(product){
     const userName = localStorage.getItem("currentUser")
     let arrayObjects = [];
-    let data = localStorage.getItem(userName)
+    let data = localStorage.getItem(userName+"Basket")
     if(data !== null){
         arrayObjects = JSON.parse(data)
     } 
     arrayObjects.push(product)
-    localStorage.setItem(userName, JSON.stringify(arrayObjects))
+    localStorage.setItem(userName+"Basket", JSON.stringify(arrayObjects))
 }
 
+logoutButton.onclick = function() {
+    const currentURL = window.location.href;
+    const newUrl = currentURL.replace("main","login");
+    window.location.href = newUrl;
+    localStorage.removeItem("currentUser")
+}
+
+cabinetButton.onclick = function() {
+    const currentURL = window.location.href;
+    const newUrl = currentURL.replace("main","cabinet");
+    window.location.href = newUrl;
+}

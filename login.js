@@ -7,7 +7,6 @@ loginElementButton.onclick = function() {
     const passwordValue = passwordInput.value
     isUserExist(userNameValue, passwordValue).then(userExists => {
         if(userExists){
-            // updateCurrentUser(userNameValue)
             const currentURL = window.location.href;
             const newUrl = currentURL.replace("login", "main");
             window.location.href = newUrl;

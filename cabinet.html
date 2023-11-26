@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basket</title>
-    <script src="basket.js" defer></script>
+    <title>Cabinet</title>
     <style>
-    table {
+        table {
       border-collapse: collapse;
       width: 100%;
       border: 1px solid #ddd;
@@ -22,24 +21,19 @@
       background-color: #f2f2f2;
     }
 
-    .remove-cell {
-      cursor: pointer;
-      color: blue;
-      text-decoration: underline;
-    }
-        h2{
+        h2, h3{
             text-align: center;
         }
-
-        button{
-          margin: 5px;
+        #returnToMainPage{
+            background-color: red;
         }
     </style>
+    <script src="cabinet.js" defer></script>
 </head>
 <body>
-    <h2>Your Basket</h2>
+    <h2>Your Cabinet</h2>
+    <h3>History of orders</h3>
+    <button id="returnToMainPage">Return to main page</button>
     <div id="result"></div>
-
 </body>
-
 </html>

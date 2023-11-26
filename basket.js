@@ -1,6 +1,6 @@
     const userName = localStorage.getItem("currentUser")
-    const data = localStorage.getItem(userName)
-    if(data !== null){
+    const data = localStorage.getItem(userName+"Basket")
+    if(data !== null && data !== "[]"){
         let sum1 = 0;
         let arrayObjects = JSON.parse(data)
 
@@ -25,7 +25,6 @@
             let cell = document.createElement('td');
             cell.textContent = rowData[header];
             row.appendChild(cell);
-            console.log(rowData)
         });
 
         let removeCell = document.createElement('td');
@@ -47,17 +46,49 @@
 
         const res = document.getElementById("result");
         res.innerHTML = `<p>Overall summa: ${sum1}</p>`;
+        const buttonApprove = document.createElement("button");
+        const myCabinetButton = document.createElement("button");
+
+        buttonApprove.innerHTML = "Submit order";
+        buttonApprove.setAttribute("id", "approveButton");
+        buttonApprove.style.backgroundColor = "blue";
+        buttonApprove.style.color = "white";
+        res.appendChild(buttonApprove);
+
+
+        myCabinetButton.innerHTML = "Navigate to cabinet page";
+        myCabinetButton.setAttribute("id", "myCabinetButton");
+        myCabinetButton.style.backgroundColor = "green";
+        myCabinetButton.style.color = "white";
+        res.appendChild(myCabinetButton);
+
+        buttonApprove.addEventListener("click", function() {
+            moveOrdersFromBasket()
+            alert("Your order has been created!");
+            const currentURL = window.location.href;
+            const newUrl = currentURL.replace("basket", "cabinet");
+            window.location.href = newUrl;
+        });
+
+        myCabinetButton.addEventListener("click", function() {
+            const currentURL = window.location.href;
+            const newUrl = currentURL.replace("basket", "cabinet");
+            window.location.href = newUrl;
+        });
+        createReturnButton()
     }else{
         const warning = document.getElementById("result");
-        warning.innerHTML = "<p>You don't have any items in basket!</p>";
+        warning.innerHTML = "<p>Your basket is empty!</p>";
+        createReturnButton()
+        
     } 
 
 function removeItem(item){
     const userName = localStorage.getItem("currentUser")
-    let data = JSON.parse(localStorage.getItem(userName))
+    let data = JSON.parse(localStorage.getItem(userName+"Basket"))
     data = data.filter(existingItem => !isEquals(existingItem, item))
     console.log(data)
-    localStorage.setItem(userName, JSON.stringify(data))
+    localStorage.setItem(userName+"Basket", JSON.stringify(data))
 }
 
 function isEquals(existingItem, item){
@@ -71,4 +102,30 @@ function isEquals(existingItem, item){
         return false
     }
     return true
+}
+
+function moveOrdersFromBasket(){
+    const userName = localStorage.getItem("currentUser")
+    let arrayObjects = JSON.parse(localStorage.getItem(userName+"Basket"))
+    let data = localStorage.getItem(userName+"Order")
+    if(data !== null){
+        arrayObjects = arrayObjects.concat(JSON.parse(data));
+    } 
+    localStorage.removeItem(userName+"Basket")
+    localStorage.setItem(userName+"Order", JSON.stringify(arrayObjects))
+}
+
+function createReturnButton(){
+    const res = document.getElementById("result");
+    const returnButton = document.createElement("button");
+    returnButton.innerHTML = "Return to main page";
+    returnButton.setAttribute("id", "returnButton");
+    returnButton.style.backgroundColor = "red";
+    returnButton.style.color = "white";
+    res.appendChild(returnButton);
+    returnButton.addEventListener("click", function() {
+        const currentURL = window.location.href;
+        const newUrl = currentURL.replace("basket", "main");
+        window.location.href = newUrl;
+    });
 }
